@@ -1,0 +1,76 @@
+{
+	"name": "algoforge-app",
+	"version": "3.0.2",
+	"description": "Un éditeur d'algorithmes graphiques.",
+	"homepage": "https://algoforge.fr",
+	"author": {
+		"name": "Suares Jokin",
+		"email": "contact@jokinsuares.fr"
+	},
+	"main": "main.js",
+	"scripts": {
+		"start": "electron .",
+		"pack": "electron-builder --dir",
+		"dist": "electron-builder"
+	},
+	"license": "ISC",
+	"devDependencies": {
+		"@electron-forge/cli": "^7.3.1",
+		"@electron-forge/maker-deb": "^7.3.1",
+		"@electron-forge/maker-rpm": "^7.3.1",
+		"@electron-forge/maker-squirrel": "^7.3.1",
+		"@electron-forge/maker-zip": "^7.3.1",
+		"@electron-forge/plugin-auto-unpack-natives": "^7.3.1",
+		"@electron-forge/plugin-fuses": "^7.3.1",
+		"electron": "^29.3.0",
+		"electron-builder": "^24.13.3"
+	},
+	"dependencies": {
+		"cors": "^2.8.5",
+		"electron-squirrel-startup": "^1.0.0",
+		"express": "^4.19.2",
+		"puppeteer": "^22.6.4"
+	},
+	"build": {
+		"appId": "algoforge.app",
+		"productName": "AlgoForge",
+		"directories": {
+			"output": "dist"
+		},
+		"files": [
+			"**/*",
+			"node_modules/**/*",
+			"main.js",
+			"package.json",
+			"src/*",
+			"src/**/*",
+			"src/**/**/*"
+		],
+		"asar": true,
+		"asarUnpack": [
+			"**/*.html",
+			"**/*.js",
+			"**/*.css"
+		],
+		"mac": {
+			"category": "public.app-category.graphics-design",
+			"icon": "build/icons/mac/icon.icns"
+		},
+		"win": {
+			"target": "nsis",
+			"icon": "build/icons/win/icon.ico"
+		},
+		"nsis": {
+			"oneClick": false,
+			"allowToChangeInstallationDirectory": true
+		},
+		"linux": {
+			"target": [
+				"AppImage",
+				"deb",
+				"pacman"
+			],
+			"icon": "build/icons/linux"
+		}
+	}
+}
